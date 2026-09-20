@@ -1,8 +1,16 @@
 import React from 'react'
+import { BrowserRouter,Routes,Route } from 'react-router-dom'
+import HomePage from './Pages/HomePage'
+import AboutPage from './Pages/AboutPage'
 
 function App() {
   return (
-    <h1>This is the App component</h1>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage/>}/>
+        <Route path="/about" element={<AboutPage/>}/>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
