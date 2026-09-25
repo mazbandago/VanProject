@@ -1,20 +1,35 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-
-
-
-
+import { Link, useParams } from 'react-router-dom'
 
 function Vans() {
     const [vans, setVans] = useState([])
     const [loading, setLoading]= useState(true)
     const [errors,setErrors] = useState(null)
     const btDesign = "font-semibold text-sm px-3 py-1.5 bg-black text-white rounded-lg hover:bg-amber-300 hover:text-black transition cursor-pointer"
+    
+    useEffect(()=>{
+        fetch("/api/vans")
+        .then((res)=>{
+            if(!res.ok){
+                throw new Error("The server is down")
+            }
+            return res.json()
+        })
+        .then((data)=>{
+            setVans(data.vans)
+            setLoading(false)
+        })
+        .catch((err)=>{
+            setErrors(err.message)
+            setLoading(false)
+        })
+    },[])
 
      const vanElement = vans.map(van=>{
-        console.log(van)
         return(
             <div key={van.id} className='w-full bg-white rounded-2xl overflow-hidden shadow-sm border border-orange-100 flex flex-col p-4'>
+                <Link to ={`/vans/${van.id}`} >
                     <div className='h-56 sm:h-60 w-full overflow-hidden rounded-xl'>
                         <img src={van.imageUrl} alt={van.name} className='w-full h-full object-cover object-center hover:scale-105 transition duration-300'/>
                     </div>
@@ -28,30 +43,12 @@ function Vans() {
                     <div className='mt-3'>
                         <span className='inline-block bg-orange-200 text-white text-2xl font-bold px-3 py-1 rounded-md'>{van.type}</span>
                     </div>
+                </Link>
             </div>
         )
             
      })
-    useEffect(()=>{
-        fetch("/api/vans")
-        .then((res)=>{
-            if(!res.ok){
-                throw new Error("The server is down")
-            }
-            return res.json()
-        })
-        .then((data)=>{
-            console.log(data.vans)
-            setVans(data.vans)
-            setLoading(false)
-        })
-        .catch((err)=>{
-            setErrors(err.message)
-            setLoading(false)
-        })
-    },[])
-
-
+    
     if (loading) return <div className="p-10 text-center font-bold text-xl">Loading vans...</div>
     if (errors) return <div className="p-10 text-center text-red-500 font-bold">{errors}</div>
     

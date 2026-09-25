@@ -4,6 +4,7 @@ import HomePage from './Pages/HomePage'
 import AboutPage from './Pages/AboutPage'
 import Vans from './Pages/Vans'
 import Layout from './components/Layout'
+import VanDetails from './Pages/VanDetails'
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<HomePage/>}/>
           <Route path="/about" element={<AboutPage/>}/>
           <Route path="/vans" element={<Vans/>}/>
+          <Route path="/vans/:id" element={<VanDetails/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
