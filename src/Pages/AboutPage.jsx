@@ -16,7 +16,7 @@ function AboutPage() {
           <div className="max-w-3xl mx-auto px-6 py-12 flex flex-col items-start text-left">
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-black tracking-tight leading-tight mb-6">
-                Don't squesze in a sedan when you could relax in a van
+                Don't squeeze in a sedan when you could relax in a van
               </h1>
         
               <p className='text-base sm:text-lg text-gray-800 leading-relaxed font-normal mb-10'>
