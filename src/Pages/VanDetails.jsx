@@ -16,7 +16,6 @@ function VanDetails() {
             return res.json()
         })
         .then((data)=>{
-            console.log(data.vans)
             setVan(data.vans)
             setLoading(false)
         })
@@ -44,7 +43,7 @@ function VanDetails() {
                         className="w-full h-72 sm:h-96 object-cover rounded-xl mb-6" 
                     />
 
-                    <span className="inline-block bg-orange-100 text-orange-800 text-sm font-semibold px-3 py-1 rounded-md mb-4 capitalize">
+                    <span className="inline-block bg-orange-500 text-white text-sm font-semibold px-3 py-1 rounded-md mb-4 capitalize hover:bg-black">
                         {van.type}
                     </span>
 

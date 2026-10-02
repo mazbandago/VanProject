@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Outlet, useParams, NavLink} from 'react-router-dom'
+import { Outlet, useParams, NavLink, Link} from 'react-router-dom'
 import { useState } from 'react'
 
 function HostVanDetails() {
@@ -23,7 +23,11 @@ function HostVanDetails() {
 
     if(loading) return <h1 className='my-20 bg-white text-center font-semibold text-2xl h-30 shadow-lg'>Loading van....</h1>
   return (
-    <section className='min-h-screen bg-amber-50 py-10'>
+    
+    <section className='min-h-screen bg-amber-50 py-5'>
+        <Link to=".." relative="path" className="text-sm font-semibold underline text-gray-700 hover:text-black mb-4 mx-6 inline-block">
+                &larr; Back to  Hostvan
+        </Link>
         <div className='bg-white m-5 p-4'>
             <div className='flex gap-3'>
                 <img src={hostVan.imageUrl} alt={hostVan.name} className='h-45 max-w-md rounded-lg p-4'/>

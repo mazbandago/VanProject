@@ -11,8 +11,9 @@ function HostVan() {
       return setVan(data.vans)
     })
   },[])
+
   const HostVanEl = van.map(item=>(
-  <Link key={item.id} to={`/host/van/${item.id}`}>
+  <Link key={item.id} to={`${item.id}`}>
     <div key={item.id} className='bg-white flex gap-2 mb-5 m-4'>
         <img src={item.imageUrl} alt="" className='h-30 sm:h-40 p-3 rounded-xl'/>
         <div className='flex flex-col justify-center p-4'>
@@ -22,6 +23,7 @@ function HostVan() {
     </div>
   </Link>
   ))
+  
   return (
     <div className='min-h-screen bg-gray-100'>
       <h1 className='py-10 px-4 font-bold text-2xl sm:text-3xl text-gray-900'>Your listed vans</h1>
