@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useSearchParams } from 'react-router-dom'
 
 function Vans() {
     const [vans, setVans] = useState([])
     const [loading, setLoading]= useState(true)
     const [errors,setErrors] = useState(null)
+    const [searchParams, setSearchParams] = useSearchParams()
+    const typeFilter = searchParams.get("type")
+    
     const btDesign = "font-semibold text-sm px-3 py-1.5 bg-black text-white rounded-lg hover:bg-amber-300 hover:text-black transition cursor-pointer"
     
     useEffect(()=>{
@@ -26,7 +29,13 @@ function Vans() {
         })
     },[])
 
-     const vanElement = vans.map(van=>{
+    const vansFilter = typeFilter
+    ? vans.filter(van=>van.type===typeFilter
+     ) : vans
+
+    
+
+     const vanElement = vansFilter.map(van=>{
         return(
             <div key={van.id} className='w-full bg-white rounded-2xl overflow-hidden shadow-sm border border-orange-100 flex flex-col p-4'>
                 <Link to ={`/vans/${van.id}`} >
@@ -62,11 +71,12 @@ function Vans() {
         
         <div className='flex items-center justify-between mb-10 flex-wrap gap-4'>
             <div className='flex flex-wrap items-center gap-3'>
-                <div className={btDesign}>Simple</div>
-                <div className={btDesign}>Luxury</div>
-                <div className={btDesign}>Rugged</div>
+                <buttons className={btDesign} onClick={()=>setSearchParams({type:"simple"})}>Simple</buttons>
+                <buttons className={btDesign} onClick={()=>setSearchParams({type:"luxury"})}>Luxury</buttons>
+                <buttons className={btDesign} onClick={()=>setSearchParams({type:"rugged"})}>Rugged</buttons>
+                
             </div>
-            <button className='tex t-sm font-semibold underline text-gray-700 hover:text-black cursor-pointer'>
+            <button onClick={()=>setSearchParams({})} className='tex t-sm font-semiboldderline text-gray-700 hover:text-black cursor-pointer'>
                 Clear filters
             </button>
         </div>
