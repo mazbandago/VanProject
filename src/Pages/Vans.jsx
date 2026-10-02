@@ -33,6 +33,17 @@ function Vans() {
     ? vans.filter(van=>van.type===typeFilter
      ) : vans
 
+     function generateNewFilter(key, value){
+        setSearchParams(prevParam=>{
+            if(key===null){
+                prevParam.delete(key)
+            }else{
+                prevParam.set(key,value)
+            }
+            return prevParam
+        })
+     }
+
     
 
      const vanElement = vansFilter.map(van=>{
@@ -71,12 +82,12 @@ function Vans() {
         
         <div className='flex items-center justify-between mb-10 flex-wrap gap-4'>
             <div className='flex flex-wrap items-center gap-3'>
-                <buttons className={btDesign} onClick={()=>setSearchParams({type:"simple"})}>Simple</buttons>
-                <buttons className={btDesign} onClick={()=>setSearchParams({type:"luxury"})}>Luxury</buttons>
-                <buttons className={btDesign} onClick={()=>setSearchParams({type:"rugged"})}>Rugged</buttons>
+                <buttons className={btDesign} onClick={()=>generateNewFilter("type","simple")}>Simple</buttons>
+                <buttons className={btDesign} onClick={()=>generateNewFilter("type","luxury")}>Luxury</buttons>
+                <buttons className={btDesign} onClick={()=>generateNewFilter("type","rugged")}>Rugged</buttons>
                 
             </div>
-            <button onClick={()=>setSearchParams({})} className='tex t-sm font-semiboldderline text-gray-700 hover:text-black cursor-pointer'>
+            <button onClick={()=>generateNewFilter("type", null)} className='tex t-sm font-semiboldderline text-gray-700 hover:text-black cursor-pointer'>
                 Clear filters
             </button>
         </div>
