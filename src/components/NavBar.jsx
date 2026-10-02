@@ -23,8 +23,8 @@ function NavBar() {
 
         {/* Navigation Links */}
         <div className="flex items-center justify-center sm:justify-end gap-4 sm:gap-6">
-          <NavLink to="/" className={getLinkStyle}>
-            Home
+          <NavLink to="/host"  className={getLinkStyle}>
+            Host
           </NavLink>
           <NavLink to="/about" className={getLinkStyle}>
             About
