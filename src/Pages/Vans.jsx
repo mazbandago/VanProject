@@ -10,7 +10,8 @@ function Vans() {
     const typeFilter = searchParams.get("type")
     
     const btDesign = "font-semibold text-sm px-3 py-1.5 bg-black text-white rounded-lg hover:bg-amber-300 hover:text-black transition cursor-pointer"
-    
+    const selected = "bg-red-900 px-2 py-1 rounded font-bold text-white"
+     
     useEffect(()=>{
         fetch("/api/vans")
         .then((res)=>{
@@ -82,14 +83,14 @@ function Vans() {
         
         <div className='flex items-center justify-between mb-10 flex-wrap gap-4'>
             <div className='flex flex-wrap items-center gap-3'>
-                <buttons className={btDesign} onClick={()=>generateNewFilter("type","simple")}>Simple</buttons>
-                <buttons className={btDesign} onClick={()=>generateNewFilter("type","luxury")}>Luxury</buttons>
-                <buttons className={btDesign} onClick={()=>generateNewFilter("type","rugged")}>Rugged</buttons>
-                
+                <buttons className={`btDesign ${typeFilter==="simple"? selected : btDesign}`} onClick={()=>generateNewFilter("type","simple")}>Simple</buttons>
+                <buttons className={`btDesign ${typeFilter==="luxury"? selected : btDesign}`} onClick={()=>generateNewFilter("type","luxury")}>Luxury</buttons>
+                <buttons className={`btDesign ${typeFilter==="rugged"? selected : btDesign}`} onClick={()=>generateNewFilter("type","rugged")}>Rugged</buttons> 
             </div>
-            <button onClick={()=>generateNewFilter("type", null)} className='tex t-sm font-semiboldderline text-gray-700 hover:text-black cursor-pointer'>
+            {typeFilter?
+            (<button onClick={()=>generateNewFilter("type", null)} className='tex t-sm font-semiboldderline text-gray-700 hover:text-black cursor-pointer'>
                 Clear filters
-            </button>
+            </button>) : null}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 pb-12">
