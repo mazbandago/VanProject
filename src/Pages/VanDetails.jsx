@@ -29,6 +29,7 @@ function VanDetails() {
     },[])
 
     const search = location.state?.search ||""
+    const type = location.state?.type || "all"
 
 
     if(loading) return <p className='p-10 text-center font-bold text-xl'>Loading Details Page.....</p>
@@ -37,7 +38,7 @@ function VanDetails() {
   return (
         <div className='bg-orange-50 min-h-screen p-6 sm:p-10'>
             <Link to={`..${search}`} relative='path' className="text-sm font-semibold underline text-gray-700 hover:text-black mb-6 inline-block">
-                &larr; Back to all vans
+                &larr; Back to {type} vans
             </Link>
 
             {van && (

@@ -50,7 +50,7 @@ function Vans() {
      const vanElement = vansFilter.map(van=>{
         return(
             <div key={van.id} className='w-full bg-white rounded-2xl overflow-hidden shadow-sm border border-orange-100 flex flex-col p-4'>
-                <Link to ={van.id} state={{search:`?${searchParams.toString()}`}}>
+                <Link to ={van.id} state={{search:`?${searchParams.toString()}`, type: typeFilter}}>
                     <div className='h-56 sm:h-60 w-full overflow-hidden rounded-xl'>
                         <img src={van.imageUrl} alt={van.name} className='w-full h-full object-cover object-center hover:scale-105 transition duration-300'/>
                     </div>
