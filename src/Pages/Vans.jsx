@@ -50,7 +50,7 @@ function Vans() {
      const vanElement = vansFilter.map(van=>{
         return(
             <div key={van.id} className='w-full bg-white rounded-2xl overflow-hidden shadow-sm border border-orange-100 flex flex-col p-4'>
-                <Link to ={`${van.id}`} >
+                <Link to ={van.id} state={{search:`?${searchParams.toString()}`}}>
                     <div className='h-56 sm:h-60 w-full overflow-hidden rounded-xl'>
                         <img src={van.imageUrl} alt={van.name} className='w-full h-full object-cover object-center hover:scale-105 transition duration-300'/>
                     </div>
@@ -83,9 +83,9 @@ function Vans() {
         
         <div className='flex items-center justify-between mb-10 flex-wrap gap-4'>
             <div className='flex flex-wrap items-center gap-3'>
-                <buttons className={`btDesign ${typeFilter==="simple"? selected : btDesign}`} onClick={()=>generateNewFilter("type","simple")}>Simple</buttons>
-                <buttons className={`btDesign ${typeFilter==="luxury"? selected : btDesign}`} onClick={()=>generateNewFilter("type","luxury")}>Luxury</buttons>
-                <buttons className={`btDesign ${typeFilter==="rugged"? selected : btDesign}`} onClick={()=>generateNewFilter("type","rugged")}>Rugged</buttons> 
+                <button className={`btDesign ${typeFilter==="simple"? selected : btDesign}`} onClick={()=>generateNewFilter("type","simple")}>Simple</button>
+                <button className={`btDesign ${typeFilter==="luxury"? selected : btDesign}`} onClick={()=>generateNewFilter("type","luxury")}>Luxury</button>
+                <button className={`btDesign ${typeFilter==="rugged"? selected : btDesign}`} onClick={()=>generateNewFilter("type","rugged")}>Rugged</button> 
             </div>
             {typeFilter?
             (<button onClick={()=>generateNewFilter("type", null)} className='tex t-sm font-semiboldderline text-gray-700 hover:text-black cursor-pointer'>

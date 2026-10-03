@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 function VanDetails() {
@@ -7,6 +7,9 @@ function VanDetails() {
     const [van, setVan] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+    const location = useLocation()
+    console.log(location)
+
     useEffect(()=>{
         fetch(`/api/vans/${param.id}`)
         .then((res)=>{
@@ -25,13 +28,15 @@ function VanDetails() {
         })
     },[])
 
+    const search = location.state?.search ||""
+
 
     if(loading) return <p className='p-10 text-center font-bold text-xl'>Loading Details Page.....</p>
     if(error) return <p className="p-10 text-center text-red-500 font-bold">{error}</p>
 
   return (
         <div className='bg-orange-50 min-h-screen p-6 sm:p-10'>
-            <Link to="/vans" className="text-sm font-semibold underline text-gray-700 hover:text-black mb-6 inline-block">
+            <Link to={`..${search}`} relative='path' className="text-sm font-semibold underline text-gray-700 hover:text-black mb-6 inline-block">
                 &larr; Back to all vans
             </Link>
 
