@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Link, useParams, useSearchParams } from 'react-router-dom'
+import { getVan } from '../Api'
 
 function Vans() {
     const [vans, setVans] = useState([])
-    const [loading, setLoading]= useState(true)
+    const [loading, setLoading]= useState(false)
     const [errors,setErrors] = useState(null)
     const [searchParams, setSearchParams] = useSearchParams()
     const typeFilter = searchParams.get("type")
@@ -13,21 +14,20 @@ function Vans() {
     const selected = "bg-red-900 px-2 py-1 rounded font-bold text-white"
      
     useEffect(()=>{
-        fetch("/api/vans")
-        .then((res)=>{
-            if(!res.ok){
-                throw new Error("The server is down")
+       async function loadVan(){
+            setLoading(true)
+            const data = await getVan()
+            try {
+                setVans(data)
+                setLoading(false)
+            } catch (error) {
+                setErrors(error)
+                console.log(error)
+            } finally{
+                setLoading(false)
             }
-            return res.json()
-        })
-        .then((data)=>{
-            setVans(data.vans)
-            setLoading(false)
-        })
-        .catch((err)=>{
-            setErrors(err.message)
-            setLoading(false)
-        })
+        }
+        loadVan()
     },[])
 
     const vansFilter = typeFilter
@@ -70,7 +70,7 @@ function Vans() {
             
      })
     
-    if (loading) return <div className="p-10 text-center font-bold text-xl">Loading vans...</div>
+    if (loading) return <div className=" bg-blue-600  h-dvh flex items-center justify-center p-10 text-center font-bold text-xl">Loading vans...</div>
     if (errors) return <div className="p-10 text-center text-red-500 font-bold">{errors}</div>
     
     
