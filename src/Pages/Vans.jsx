@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Link, useParams, useSearchParams } from 'react-router-dom'
 import { getVan } from '../Api'
 
+
 function Vans() {
     const [vans, setVans] = useState([])
     const [loading, setLoading]= useState(false)
@@ -16,10 +17,9 @@ function Vans() {
     useEffect(()=>{
        async function loadVan(){
             setLoading(true)
-            const data = await getVan()
             try {
+                const data = await getVan()
                 setVans(data)
-                setLoading(false)
             } catch (error) {
                 setErrors(error)
                 console.log(error)
@@ -71,7 +71,7 @@ function Vans() {
      })
     
     if (loading) return <div className=" bg-blue-600  h-dvh flex items-center justify-center p-10 text-center font-bold text-xl">Loading vans...</div>
-    if (errors) return <div className="p-10 text-center text-red-500 font-bold">{errors}</div>
+    if (errors) return <div className="p-10 text-center text-red-500 font-bold">{errors.message}</div>
     
     
   return (

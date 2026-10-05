@@ -1,5 +1,5 @@
 
-export async function getVan(){
+export  async function getVan(){
     const response = await fetch("/api/vans")
     if(!response.ok){
         throw{
