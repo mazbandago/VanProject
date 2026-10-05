@@ -15,6 +15,7 @@ import Photos from './Pages/HostPage/Photos'
 import Pricing from './Pages/HostPage/Pricing'
 import VanInfo from './Pages/HostPage/VanInfo'
 import NotFound from './Pages/HostPage/NotFound'
+import Login from './Pages/Login'
 
 
 
@@ -28,6 +29,8 @@ function App() {
             <Route path="about" element={<AboutPage/>}/>
             <Route path="vans" element={<Vans/>}/>
             <Route path="vans/:id" element={<VanDetails/>}/>
+            <Route path="login" element={<Login/>}/>
+
 
           <Route path="host" element={<HostLayout/>}>
             <Route index element={<Dashboard/>}/>

@@ -32,6 +32,9 @@ function NavBar() {
           <NavLink to="/vans" className={getLinkStyle}>
             Vans
           </NavLink>
+          <Link to="/login">
+          Login
+          </Link>
         </div>
       </nav>
     </header>
