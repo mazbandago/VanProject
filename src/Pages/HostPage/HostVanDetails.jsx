@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { Outlet, useParams, NavLink, Link} from 'react-router-dom'
 import { useState } from 'react'
+import { getHostVans } from '../../Api'
 
 function HostVanDetails() {
      const hostLinks = ({isActive})=> 
@@ -8,20 +9,29 @@ function HostVanDetails() {
     ? 'border-amber-800 text-gray-950'
     : 'border-transparent hover:text-amber-900 hover:border-amber-800'
   }`
-    const param = useParams()
-    const [loading, setLoading] =useState(true)
+    const {id} = useParams()
+    const [loading, setLoading] =useState(false)
+    const [error, setError] =useState(null)
     const [hostVan, setHostVan] = useState(null)
    
     useEffect(()=>{
-        fetch(`/api/host/vans/${param.id}`)
-        .then(res=>res.json())
-        .then(data=>{
-            setHostVan(data.vans)
-            setLoading(false)
-        })
+        async function loadVanDetails(){
+            setLoading(true)
+            try {
+               const data = await getHostVans(id) 
+               setHostVan(data)
+            } catch (error) {
+                setError(error)
+            }
+            finally{
+                setLoading(false)
+            }
+        }
+        loadVanDetails()
     },[])
 
     if(loading) return <h1 className='my-20 bg-white text-center font-semibold text-2xl h-30 shadow-lg'>Loading van....</h1>
+    if (error) return <div className="p-10 text-center text-red-500 font-bold">{error.message}</div>
   return (
     
     <section className='min-h-screen bg-amber-50 py-5'>

@@ -1,39 +1,37 @@
 import React, { useEffect,useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { getVan } from '../Api'
 
 function VanDetails() {
-    const param = useParams()
+    const {id} = useParams()
     const [van, setVan] = useState(null)
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
     const location = useLocation()
-    console.log(location)
-
+    
     useEffect(()=>{
-        fetch(`/api/vans/${param.id}`)
-        .then((res)=>{
-            if(!res.ok){
-                throw new Error("The server is down")
+        async function loadVan(){
+            setLoading(true)
+            try {
+                const data = await getVan(id)
+                setVan(data)
+            } catch (error) {
+               setError(error) 
             }
-            return res.json()
-        })
-        .then((data)=>{
-            setVan(data.vans)
-            setLoading(false)
-        })
-        .catch((err)=>{
-            setError(err.message)
-            setLoading(false)
-        })
+            finally{
+                setLoading(false)
+            }
+        }
+        loadVan()
     },[])
 
     const search = location.state?.search ||""
     const type = location.state?.type || "all"
 
 
-    if(loading) return <p className='p-10 text-center font-bold text-xl'>Loading Details Page.....</p>
-    if(error) return <p className="p-10 text-center text-red-500 font-bold">{error}</p>
+    if(loading) return <h1 className='my-20 bg-white text-center font-semibold text-2xl h-30 shadow-lg'>Loading van....</h1>
+    if (error) return <div className="p-10 text-center text-red-500 font-bold">{error.message}</div>
 
   return (
         <div className='bg-orange-50 min-h-screen p-6 sm:p-10'>

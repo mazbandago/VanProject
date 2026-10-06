@@ -22,7 +22,6 @@ function Vans() {
                 setVans(data)
             } catch (error) {
                 setErrors(error)
-                console.log(error)
             } finally{
                 setLoading(false)
             }
@@ -45,8 +44,6 @@ function Vans() {
         })
      }
 
-    
-
      const vanElement = vansFilter.map(van=>{
         return(
             <div key={van.id} className='w-full bg-white rounded-2xl overflow-hidden shadow-sm border border-orange-100 flex flex-col p-4'>
@@ -66,11 +63,10 @@ function Vans() {
                     </div>
                 </Link>
             </div>
-        )
-            
+        )  
      })
     
-    if (loading) return <div className=" bg-blue-600  h-dvh flex items-center justify-center p-10 text-center font-bold text-xl">Loading vans...</div>
+    if(loading) return <h1 className='my-20 bg-white text-center font-semibold text-2xl h-30 shadow-lg'>Loading van....</h1>
     if (errors) return <div className="p-10 text-center text-red-500 font-bold">{errors.message}</div>
     
     
