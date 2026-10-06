@@ -4,11 +4,9 @@ import { useLocation } from 'react-router-dom'
 
 function Login() {
     const location = useLocation()
-    
     const [details, setDetails]= useState({email: "", password: ""})
     function handleSubmit(event){
         event.preventDefault()
-    
     }
 
     function handleChange(event){
@@ -16,15 +14,14 @@ function Login() {
         setDetails(prev=>({
             ...prev,
             [name]:value
-        }))
-        
+        })) 
     }
-    const styleMessage = location.state?.message || ""
+    
   return (
     <div className='min-h-screen bg-gray-100 flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8'>
-        
+        {location.state?.message && <h2 className='text-center text-2xl text-red-600 mb-10'>{location.state?.message}</h2>}
         <div className='w-full max-w-md bg-white p-8 rounded-xl shadow-md space-y-6'>
-            <div className='text-center text-2xl text-red-600'>{styleMessage}</div>
+            
             <div>
                     <h1 className='text-2xl font-bold text-center text-gray-900'>
                         Sign in to your account
