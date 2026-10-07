@@ -1,27 +1,36 @@
 import React from 'react'
 import { useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate} from 'react-router-dom'
 import { loginUser } from '../Api'
 
 function Login() {
     const location = useLocation()
+    const navigate = useNavigate()
+
     const [details, setDetails]= useState({email: "", password: ""})
     const[status, setStatus]=useState("idle")
     const[error, setError]=useState(null)
+
+    const targetDestination = location.state?.from?.pathname || "/host"
     
-    async function handleSubmit(event){
+     function handleSubmit(event){
         event.preventDefault()
         setStatus("submitting")
-        try {
-            const data= await loginUser(details)
+        loginUser(details)
+        .then(data=>{
+            localStorage.setItem("logged", true)
             setError(null)
-        } catch (error) {
+            navigate(targetDestination, {replace:true})
+        })
+        .catch(error=>{
             setError(error)
-        } finally{
+        })
+        .finally(()=>{
             setStatus("idle")
-        }
+        })
+        // setDetails({ email: "", password: "" })
     }
-
+    
     function handleChange(event){
         const{name,value} = event.target
         setDetails(prev=>({

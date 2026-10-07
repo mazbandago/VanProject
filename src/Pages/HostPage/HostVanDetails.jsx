@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { getHostVans } from '../../Api'
 
 function HostVanDetails() {
-     const hostLinks = ({isActive})=> 
+ const hostLinks = ({isActive})=> 
   `font-bold text-gray-700 sm:text-xl border-b-2 ${isActive
     ? 'border-amber-800 text-gray-950'
     : 'border-transparent hover:text-amber-900 hover:border-amber-800'
@@ -38,7 +38,7 @@ function HostVanDetails() {
         <Link to=".." relative="path" className="text-sm font-semibold underline text-gray-700 hover:text-black mb-4 mx-6 inline-block">
                 &larr; Back to  Hostvan
         </Link>
-        <div className='bg-white m-5 p-4'>
+        {hostVan && <div className='bg-white m-5 p-4'>
             <div className='flex gap-3'>
                 <img src={hostVan.imageUrl} alt={hostVan.name} className='h-45 max-w-md rounded-lg p-4'/>
                 <div className='flex flex-col justify-center'>
@@ -53,7 +53,7 @@ function HostVanDetails() {
                     <NavLink to="photos" className={hostLinks}>Photos</NavLink>
                 </div> 
                 <Outlet/>
-        </div>
+        </div>}
     </section>
   ) 
 }

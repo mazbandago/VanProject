@@ -10,6 +10,10 @@ function NavBar() {
         : 'border-transparent text-gray-800 hover:text-amber-900 hover:border-amber-700'
     }`
 
+    function fakeLogOut(){
+      localStorage.removeItem("logged")
+    }
+
   return (
     <header className="bg-amber-200 rounded-t-lg px-4 py-3 sm:px-6 sm:py-4">
       <nav className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 ">
@@ -35,6 +39,9 @@ function NavBar() {
           <Link to="/login">
           Login
           </Link>
+           <button onClick={fakeLogOut}>
+            X
+          </button>
         </div>
       </nav>
     </header>
