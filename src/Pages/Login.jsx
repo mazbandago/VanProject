@@ -14,15 +14,12 @@ function Login() {
         setStatus("submitting")
         try {
             const data= await loginUser(details)
-            console.log(data)
             setError(null)
         } catch (error) {
             setError(error)
         } finally{
             setStatus("idle")
         }
-        
-        
     }
 
     function handleChange(event){
@@ -74,7 +71,7 @@ function Login() {
                 <button 
                         type="submit"
                         disabled={isSubmitting}
-                        className='w-full py-2.5 px-4 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-md shadow transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2'
+                        className='w-full py-2.5 px-4 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-md shadow transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 disabled:bg-gray-500 disabled:opacity-70 disabled:cursor-none'
                     >
                         {isSubmitting?"Logging...": "Log in"}
                 </button>
