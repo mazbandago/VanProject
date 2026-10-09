@@ -1,5 +1,6 @@
 import React from 'react'
 import ReviewGraph from "../../assets/images/reviews-graph.png"
+import { BsStarFill } from "react-icons/bs";
 
 function Review() {
   const reviewsData = [
@@ -32,18 +33,18 @@ function Review() {
                 src={ReviewGraph}
                 alt="Review graph"
             />
-            <h3 className='p-3 font-bold text-xl mb-3'>Reviews (2)</h3>
+            <h3 className='p-3 font-bold text-xl sm:text-2xl mb-3'>Reviews (2)</h3>
             {reviewsData.map((review) => (
                 <div key={review.id} className=''> 
                     <div className="p-3 mb-4">
-                        {/* {[...Array(review.rating)].map((_, i) => (
-                            // <BsStarFill className="review-star" key={i} />
-                        ))} */}
-                        <div className="flex gap-1">
-                            <p className="font-bold">{review.name}</p>
-                            <p className="font-light ">{review.date}</p>
+                        {[...Array(review.rating)].map((_, i) => (
+                            <BsStarFill className="inline-block m-2 text-amber-500 cursor-pointer" key={i} />
+                        ))}
+                        <div className="flex items-center gap-2">
+                            <p className="font-bold sm:text-xl">{review.name}</p>
+                            <p className="font-light sm:text-xs">{review.date}</p>
                         </div>
-                        <p className='font-medium tracking-tight'>{review.text}</p>
+                        <p className='font-medium sm:font-normal tracking-tight'>{review.text}</p>
                     </div>
                     <hr className='text-black hover:text-blue-500'/>
                 </div>
