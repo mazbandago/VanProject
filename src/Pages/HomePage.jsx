@@ -3,7 +3,7 @@ import bgImage from "../assets/images/image-53.png"
 
 function HomePage(){
   return ( 
-    <section className='bg-black h-screen'>
+    <section className='bg-black min-h-screen'>
       <div style={{backgroundImage:`url(${bgImage})`}} className="bg-cover bg-center w-full min-h-screen flex items-center justify-center">
         <div className="text-white mx-5 sm:w-4xl">
           <h1 className='text-3xl font-bold tracking-tight my-8 sm:text-4xl'>You got the travel plans, we got the travel vans</h1>

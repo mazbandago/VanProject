@@ -7,7 +7,9 @@ export  async function getVan(id){
     const response = await fetch(url)
     if(!response.ok){
         throw{
-            message: "The page can not be found"
+            message: "Failed to fetch vans",
+            statusText: response.statusText,
+            status: response.status
         }
     }
     const data = await response.json()

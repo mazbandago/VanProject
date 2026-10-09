@@ -36,7 +36,7 @@ function HostVan() {
   ))
 
   if(loading) return <h1 className='my-20 bg-white text-center font-semibold text-2xl h-30 shadow-lg'>Loading van....</h1>
-  if (errors) return <div className="p-10 text-center text-red-500 font-bold">There was an error: {error.message}</div>
+  if (errors) return <div className="p-10 text-center text-red-500 font-bold">There was an error: {errors.message}</div>
   
   return (
     <div className='min-h-screen bg-gray-100'>
