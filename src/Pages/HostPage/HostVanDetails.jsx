@@ -38,9 +38,9 @@ function HostVanDetails() {
         <Link to=".." relative="path" className="text-sm font-semibold underline text-gray-700 hover:text-black mb-4 mx-6 inline-block">
                 &larr; Back to  Hostvan
         </Link>
-        {hostVan && <div className='bg-white m-5 p-4'>
+        {hostVan && <div className='bg-white m-5 p-4 rounded-2xl'>
             <div className='flex gap-3'>
-                <img src={hostVan.imageUrl} alt={hostVan.name} className='h-45 max-w-md rounded-lg p-4'/>
+                <img src={hostVan.imageUrl} alt={hostVan.name} className='h-45 max-w-md p-4 border-0 rounded-2xl shadow-lg '/>
                 <div className='flex flex-col justify-center'>
                     <button className='text-xl font-bold border p-2 rounded bg-amber-300 mb-2'>{hostVan.type}</button>
                     <h2 className='font-bold text-2xl text-gray-900'>{hostVan.name}</h2>
@@ -52,7 +52,7 @@ function HostVanDetails() {
                     <NavLink to="pricing" className={hostLinks}>Pricing</NavLink>
                     <NavLink to="photos" className={hostLinks}>Photos</NavLink>
                 </div> 
-                <Outlet/>
+                <Outlet context={{hostVan}}/>
         </div>}
     </section>
   ) 

@@ -21,7 +21,7 @@ function Review() {
     ]
     
     return (
-        <section className="bg-amber-50">
+        <section className="bg-orange-200">
             <div className="px-3 py-10 flex items-center gap-3 mb-2">
                 <h2 className='font-bold text-2xl sm:text-3xl'>Your reviews</h2>
                 <p className='font-extralight'>
@@ -35,8 +35,8 @@ function Review() {
             />
             <h3 className='p-3 font-bold text-xl sm:text-2xl mb-3'>Reviews (2)</h3>
             {reviewsData.map((review) => (
-                <div key={review.id} className=''> 
-                    <div className="p-3 mb-4">
+                <div key={review.id} className='py-8'> 
+                    <div className="p-3 ">
                         {[...Array(review.rating)].map((_, i) => (
                             <BsStarFill className="inline-block m-2 text-amber-500 cursor-pointer" key={i} />
                         ))}
