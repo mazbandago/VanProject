@@ -5,7 +5,7 @@ function HomePage(){
   return ( 
     <section className='bg-black min-h-screen'>
       <div style={{backgroundImage:`url(${bgImage})`}} className="bg-cover bg-center w-full min-h-screen flex items-center justify-center">
-        <div className="text-white mx-5 sm:w-4xl">
+        <div className="text-white flex flex-col items-center justify-center mx-5 sm:w-3xl">
           <h1 className='text-3xl font-bold tracking-tight my-8 sm:text-4xl'>You got the travel plans, we got the travel vans</h1>
           <p className='tracking-wide text-xl sm:text-2xl my-8 font-medium'>Add adventure to your life by joining the #vanlife movement. Rent the perfect van to make your perfect road trip.</p>
           <button className='border-0 px-3 py-4 w-full text-center bg-amber-400 rounded-2xl text-2xl font-bold'>Find your van</button>
