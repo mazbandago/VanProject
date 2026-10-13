@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Link, useParams, useSearchParams } from 'react-router-dom'
-import { getVan } from '../Api'
+import { getVans } from '../Api'
 
 
 function Vans() {
@@ -18,7 +18,7 @@ function Vans() {
        async function loadVan(){
             setLoading(true)
             try {
-                const data = await getVan()
+                const data = await getVans()
                 setVans(data)
             } catch (error) {
                 setErrors(error)
