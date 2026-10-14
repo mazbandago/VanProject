@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Outlet, useParams, NavLink, Link} from 'react-router-dom'
 import { useState } from 'react'
-import { getHostVans } from '../../Api'
+import { getVan } from '../../Api'
 
 function HostVanDetails() {
  const hostLinks = ({isActive})=> 
@@ -18,7 +18,7 @@ function HostVanDetails() {
         async function loadVanDetails(){
             setLoading(true)
             try {
-               const data = await getHostVans(id) 
+               const data = await getVan(id) 
                setHostVan(data)
             } catch (error) {
                 setError(error)
