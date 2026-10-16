@@ -35,7 +35,7 @@ function Vans() {
 
      function generateNewFilter(key, value){
         setSearchParams(prevParam=>{
-            if(key===null){
+            if(value===null){
                 prevParam.delete(key)
             }else{
                 prevParam.set(key,value)
