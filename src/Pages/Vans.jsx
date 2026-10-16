@@ -8,32 +8,33 @@ export function loader(){
 }
 
 function Vans() {
-    const [vans, setVans] = useState([])
-    const [loading, setLoading]= useState(false)
+    // const [vans, setVans] = useState([])
+    // const [loading, setLoading]= useState(false)
     const [errors,setErrors] = useState(null)
     const [searchParams, setSearchParams] = useSearchParams()
     const typeFilter = searchParams.get("type")
 
-    const data = useLoaderData()
-    console.log(data)
+    const vans = useLoaderData()
+    console.log(vans)
+    
     
     const btDesign = "font-semibold text-sm px-3 py-1.5 bg-black text-white rounded-lg hover:bg-amber-300 hover:text-black transition cursor-pointer"
     const selected = "bg-red-900 px-2 py-1 rounded font-bold text-white"
      
-    useEffect(()=>{
-       async function loadVan(){
-            setLoading(true)
-            try {
-                const data = await getVans()
-                setVans(data)
-            } catch (error) {
-                setErrors(error)
-            } finally{
-                setLoading(false)
-            }
-        }
-        loadVan()
-    },[])
+    // useEffect(()=>{
+    //    async function loadVan(){
+    //         setLoading(true)
+    //         try {
+    //             const data = await getVans()
+    //             setVans(data)
+    //         } catch (error) {
+    //             setErrors(error)
+    //         } finally{
+    //             setLoading(false)
+    //         }
+    //     }
+    //     loadVan()
+    // },[])
 
     const vansFilter = typeFilter
     ? vans.filter(van=>van.type===typeFilter
@@ -72,7 +73,7 @@ function Vans() {
         )  
      })
     
-    if(loading) return <h1 className='my-20 bg-white text-center font-semibold text-2xl h-30 shadow-lg'>Loading van....</h1>
+    // if(loading) return <h1 className='my-20 bg-white text-center font-semibold text-2xl h-30 shadow-lg'>Loading van....</h1>
     if(errors) return <div className="p-10 text-center text-red-500 font-bold">{errors.message}</div>
     
     
