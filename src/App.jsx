@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter,Routes,Route } from 'react-router-dom'
+import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 import HomePage from './Pages/HomePage'
 import AboutPage from './Pages/AboutPage'
 import Vans from './Pages/Vans'
@@ -18,13 +18,7 @@ import NotFound from './Pages/HostPage/NotFound'
 import Login from './Pages/Login'
 import AuthRequired from './Pages/AuthRequired'
 
-
-
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-
+const router = createBrowserRouter(createRoutesFromElements(
         <Route path="/" element={<Layout/>}>
             <Route index element={<HomePage/>}/>
             <Route path="about" element={<AboutPage/>}/>
@@ -48,9 +42,11 @@ function App() {
 
             <Route path="*" element={<NotFound/>}/>
         </Route>
-        
-      </Routes>
-    </BrowserRouter>
+))
+
+function App() {
+  return (
+    <RouterProvider router = {router}/>
   )
 }
 
