@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import { Link, useParams, useSearchParams } from 'react-router-dom'
+import { Link, useLoaderData, useParams, useSearchParams } from 'react-router-dom'
 import { getVans } from '../Api'
 
+export function loader(){
+    return getVans()
+}
 
 function Vans() {
     const [vans, setVans] = useState([])
@@ -10,6 +13,9 @@ function Vans() {
     const [errors,setErrors] = useState(null)
     const [searchParams, setSearchParams] = useSearchParams()
     const typeFilter = searchParams.get("type")
+
+    const data = useLoaderData()
+    console.log(data)
     
     const btDesign = "font-semibold text-sm px-3 py-1.5 bg-black text-white rounded-lg hover:bg-amber-300 hover:text-black transition cursor-pointer"
     const selected = "bg-red-900 px-2 py-1 rounded font-bold text-white"
@@ -67,7 +73,7 @@ function Vans() {
      })
     
     if(loading) return <h1 className='my-20 bg-white text-center font-semibold text-2xl h-30 shadow-lg'>Loading van....</h1>
-    if (errors) return <div className="p-10 text-center text-red-500 font-bold">{errors.message}</div>
+    if(errors) return <div className="p-10 text-center text-red-500 font-bold">{errors.message}</div>
     
     
   return (

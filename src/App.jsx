@@ -2,7 +2,7 @@ import React from 'react'
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 import HomePage from './Pages/HomePage'
 import AboutPage from './Pages/AboutPage'
-import Vans from './Pages/Vans'
+import Vans, {loader as VansLoader} from './Pages/Vans'
 import Layout from './components/Layout'
 import VanDetails from './Pages/VanDetails'
 import HostLayout from './components/HostLayout'
@@ -22,7 +22,7 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route path="/" element={<Layout/>}>
             <Route index element={<HomePage/>}/>
             <Route path="about" element={<AboutPage/>}/>
-            <Route path="vans" element={<Vans/>}/>
+            <Route path="vans" element={<Vans/>} loader={VansLoader}/>
             <Route path="vans/:id" element={<VanDetails/>}/>
             <Route path="login" element={<Login/>}/>
 
@@ -32,11 +32,13 @@ const router = createBrowserRouter(createRoutesFromElements(
                 <Route path="income" element={<Income/>}/>
                 <Route path="review" element={<Review/>}/>
                 <Route path="van" element={<HostVan/>}/>
+
                 <Route path="van/:id" element={<HostVanDetails/>}>
                   <Route index element={<VanInfo/>}/>
                   <Route path="pricing" element={<Pricing/>}/>
                   <Route path="photos" element={<Photos/>}/>
                 </Route>
+
               </Route>
           </Route>
 
